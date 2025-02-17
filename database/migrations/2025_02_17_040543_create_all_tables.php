@@ -159,8 +159,18 @@ return new class extends Migration
             $table->enum('jenis_transaksi', ['pemasukan', 'pengeluaran', 'denda']);
             $table->date(column: 'tanggal');
             $table->enum('bulan', [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                'Januari',
+                'Februari',
+                'Maret',
+                'April',
+                'Mei',
+                'Juni',
+                'Juli',
+                'Agustus',
+                'September',
+                'Oktober',
+                'November',
+                'Desember'
             ]);
             $table->float('jumlah');
             $table->text('keterangan');
