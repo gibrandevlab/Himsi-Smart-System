@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Nunito';
+    src: url("/storage/NunitoFont/Font/NunitoSans_7pt-BlackItalic.ttf");
+  }
+  
+  body {
+    /* background-color: red; */
+    scroll-behavior: smooth;
+    font-family: 'Nunito';
+  }
