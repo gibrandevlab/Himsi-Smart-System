@@ -16,6 +16,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             fontFamily: {
+                'handlee': ['Handlee'],
                 'inter-thin': ['Inter-thin', 'sans-serif'],
                 'inter-light': ['Inter-light', 'sans-serif'],
                 'inter-reguler': ['Inter-reguler', 'sans-serif'],

@@ -4,7 +4,12 @@
 
 @font-face {
     font-family: "Nunito";
-    src: url("/storage/Font/NunitoFOnt/NunitoSans_7pt-BlackItalic.ttf");
+    src: url("/storage/Font/NunitoFOnt/NunitoSans_7pt-BlackItalic.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: "Handlee";
+    src: url("/storage/Font/Handlee/Handlee-Regular.ttf") format('truetype');
 }
 
 /* font inter config */
@@ -75,7 +80,6 @@
   src: url('./storage/Font/Oswald/Oswald-Bold.ttf') format('truetype');
   font-style: normal;
 }
-
 
 /* root */
 body {
