@@ -20,11 +20,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        // post(route("login"), {
-        //     onFinish: () => reset("password"),
-        // });
-
-        console.log(data)
+        post(route("login.store"));
     };
 
     return (

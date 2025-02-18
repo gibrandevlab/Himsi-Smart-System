@@ -28,6 +28,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'login'    => 'required',
             'password' => 'required',
@@ -63,6 +64,7 @@ class AuthenticatedSessionController extends Controller
         RateLimiter::hit($throttleKey, 60);
 
         return back()->withErrors(['login' => 'Login gagal, periksa kembali NIM/Email dan Password.']);
+
     }
 
     public function destroy(Request $request)
