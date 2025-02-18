@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Anggota;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -18,35 +18,49 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Login', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => session('status'),
-        ]);
+        return Inertia::render('Auth/Login');
     }
 
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->authenticate();
+        $request->validate([
+            'login' => 'required', // Bisa NIM atau email
+            'password' => 'required',
+        ]);
 
-        $request->session()->regenerate();
+        $login = $request->input('login');
+        $password = $request->input('password');
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Cek apakah input adalah email atau NIM
+        $user = User::where('email', $login)->first();
+
+        if (!$user) {
+            $anggota = Anggota::where('nim', $login)->first();
+            if ($anggota && $anggota->user) {
+                $user = $anggota->user;
+            }
+        }
+
+        if ($user && Hash::check($password, $user->password)) {
+            Auth::login($user);
+            $request->session()->regenerate();
+            return redirect()->intended(route('dashboard'));
+        }
+
+        return back()->withErrors(['login' => 'Login gagal, periksa kembali NIM/Email dan Password.']);
     }
 
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
-
+        Auth::logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }

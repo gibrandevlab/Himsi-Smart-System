@@ -20,7 +20,17 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('role', ['admin', 'member', 'guest']);
+            $table->enum('role', [
+                'superadmin',
+                'wakil_kordinator',
+                'ketua_kordinator',
+                'ketua_cabang',
+                'wakil_cabang',
+                'bendahara',
+                'sekretaris',
+                'member',
+                'guest',
+            ]);
         });
 
         // Tabel password_reset_tokens
