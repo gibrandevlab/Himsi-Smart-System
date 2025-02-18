@@ -12,7 +12,7 @@ import { MdEmail } from "react-icons/md";
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: "",
+        login: "",
         password: "",
         remember: false,
     });
@@ -20,9 +20,11 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("login"), {
-            onFinish: () => reset("password"),
-        });
+        // post(route("login"), {
+        //     onFinish: () => reset("password"),
+        // });
+
+        console.log(data)
     };
 
     return (
@@ -60,7 +62,7 @@ export default function Login({ status, canResetPassword }) {
                 <div className="w-72 h-72 bg-primary rounded-xl absolute -top-[4rem] md:hidden bg-opacity-35 shadow-md"></div>
                 <div className="w-72 h-72 bg-primary rounded-xl absolute -top-[5rem] md:hidden bg-opacity-15 shadow-md"></div>
 
-                <div className="w-full md:w-1/2 md:bg-secondary  shadow-xl p-6 md:p-8 flex flex-col justify-center items-center gap-10 md:gap-4 z-10 bg-white rounded-xl md:rounded-none relative">
+                <div className="w-full h-[450px] md:w-1/2 md:bg-secondary shadow-xl p-6 md:p-8 flex flex-col justify-center items-center gap-10 md:gap-4 z-10 bg-white rounded-xl md:rounded-none relative">
                     <div className="w-32 h-32 bg-primary absolute -right-20 -top-20 rounded-full opacity-90 md:block hidden"></div>
                     <div className="flex flex-col w-full">
                         <h1 className="font-oswald-bold text-slate-900 text-3xl text-center md:text-start">
@@ -74,32 +76,34 @@ export default function Login({ status, canResetPassword }) {
                     <form
                         action=""
                         className="flex flex-col justify-start items-start w-full"
+                        onSubmit={e => submit(e)}
                     >
                         <label
                             htmlFor="email"
                             className="block mb-1 text-sm font-medium text-gray-900 font-inter-semibold"
                         >
-                            Email
+                            Email/Nim
                         </label>
                         <div className="relative mb-6 w-full">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none w-full">
                                 <MdEmail className="text-base opacity-80"/>
                             </div>
                             <input
-                                type="email"
+                                type="text"
                                 id="email"
                                 name="email"
+                                onChange={(e) => setData("login", e.target.value)}
                                 className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
-                                placeholder="example@gmail.com"
+                                placeholder="Masukan Email/Nim"
                                 required
                             />
                         </div>
 
-                        <label
+                        {/* <label
                             htmlFor="nim"
                             className="block mb-1 text-sm font-medium text-gray-900 font-inter-semibold"
                         >
-                            NIM
+                            Nim
                         </label>
                         <div className="relative mb-6 w-full">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none w-full">
@@ -118,13 +122,13 @@ export default function Login({ status, canResetPassword }) {
                                 }}
                                 required
                             />
-                        </div>
+                        </div> */}
 
                         <label
                             htmlFor="password"
                             className="block mb-1 text-sm font-medium text-gray-900 font-inter-semibold"
                         >
-                            PASSWORD
+                            Password
                         </label>
                         <div className="relative mb-6 w-full">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none w-full">
@@ -134,6 +138,7 @@ export default function Login({ status, canResetPassword }) {
                                 type="password"
                                 id="password"
                                 name="password"
+                                onChange={(e) => setData("password", e.target.value)}
                                 className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
                                 placeholder="********"
                                 required
