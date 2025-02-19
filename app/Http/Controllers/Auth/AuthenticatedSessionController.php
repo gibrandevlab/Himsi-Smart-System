@@ -54,12 +54,22 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check($password, $user->password)) {
             RateLimiter::clear($throttleKey);
 
+            if (!$user->role) {
+                return back()->withErrors(['login' => 'Akun tidak memiliki role yang valid.']);
+            }
+
             $remember = $request->has('remember');
 
             Auth::login($user, $remember);
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+            if ($user->role === 'member') {
+                return redirect()->route('absen/view');
+            } elseif (!in_array($user->role, ['member', 'guest'])) {
+                return redirect()->route('dashboard');
+            }
+
+            return back()->withErrors(['login' => 'Role tidak valid untuk login.']);
         }
 
         RateLimiter::hit($throttleKey, 60);

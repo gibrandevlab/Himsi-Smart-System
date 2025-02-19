@@ -24,9 +24,11 @@ Route::prefix('divisi')->group(function () {
 });
 
 // Absensi Routes
-Route::post('/absen', [AbsensiController::class, 'absen'])->name('absen');
-Route::get('/absen', fn() => Inertia::render(component: 'Guest/Home'))->name('absen/view');
-// Route::get('/absen', [AbsensiController::class, 'viewabsen'])->name('absen/view');
+Route::middleware(['role:member'])->group(function () {
+    Route::post('/absen', [AbsensiController::class, 'absen'])->name('absen');
+    Route::get('/absen', fn() => Inertia::render(component: 'Guest/Home'))->name('absen/view');
+    // Route::get('/absen', [AbsensiController::class, 'viewabsen'])->name('absen/view');
+});
 
 
 // Authentication Routes
