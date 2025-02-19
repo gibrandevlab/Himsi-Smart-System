@@ -17,5 +17,21 @@ Route::middleware(['role:superadmin', 'role:wakil_kordinator', 'role:ketua_kordi
 
 
 #ReadDataAccess Routes
+Route::group(['prefix' => 'divisi'], function () {
+    Route::get('/pendidikan', function () {
+        return Inertia::render('Divisi/Pendidikan/Home');
+    });
 
+    Route::get('/rsdm', function () {
+        return Inertia::render('Divisi/Rsdm/Home');
+    });
+
+    Route::get('/litbang', function () {
+        return Inertia::render('Divisi/Litbang/Home');
+    });
+
+    Route::get('/kominfo', function () {
+        return Inertia::render('Divisi/Kominfo/Home');
+    });
+});
 require __DIR__.'/auth.php';
