@@ -54,11 +54,11 @@ const Navbar = () => {
                     <div className="flex gap-6 items-center">
                         <ul className="hidden md:flex gap-8 nav-items">
                             <li>
-                                <Link>Home</Link>
+                                <Link>Beranda</Link>
                             </li>
                             <li className="relative">
                                 <button aria-label="btn-division" onClick={toggleDivision}>
-                                    <span>Division</span>
+                                    <span>Divisi HIMSI</span>
                                     <i className={`fa-solid ml-2 ${isDivisionOpen ? 'fa-caret-up' : 'fa-caret-down'}`}></i>
                                 </button>
                                 {isDivisionOpen && (
@@ -72,14 +72,14 @@ const Navbar = () => {
                                 )}
                             </li>
                             <li>
-                                <Link>About</Link>
+                                <Link>Artikel HIMSI</Link>
                             </li>
                             <li>
-                                <Link>Information</Link>
+                                <Link>Layanan HIMSI</Link>
                             </li>
                         </ul>
                         <button aria-label="btn-news" className="bg-primary hidden md:block bg-slate-900 text-white py-2 px-6 rounded-md">
-                            News
+                            Masuk
                         </button>
 
                         {/* BTN BARS */}
@@ -115,11 +115,11 @@ const Navbar = () => {
 
                 <ul className="text-white text-2xl space-y-4">
                     <li>
-                        <Link>Home</Link>
+                        <Link>Beranda</Link>
                     </li>
                     <li>
                         <button aria-label="btn-division" onClick={toggleDivision}>
-                            <span>Division</span>
+                            <span>Divisi HIMSI</span>
                             <i className={`fa-solid ml-2 ${isDivisionOpen === true ? 'fa-caret-up' : 'fa-caret-down'}`}></i>    
                         </button>
                         {isDivisionOpen && (
@@ -133,10 +133,13 @@ const Navbar = () => {
                         )}
                     </li>
                     <li>
-                        <Link>About</Link>
+                        <Link>Artikel HIMSI</Link>
                     </li>
                     <li>
-                        <Link>Information</Link>
+                        <Link>Layanan HIMSI</Link>
+                    </li>
+                    <li>
+                        <Link>Masuk</Link>
                     </li>
                 </ul>
                 </div>

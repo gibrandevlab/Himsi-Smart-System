@@ -17,28 +17,6 @@ export default function Home() {
         {/* END NAVBAR  */}
 
         {/* HERO SECTION */}
-        {/* <section id="hero" className="w-full min-h-screen">
-            <div className="flex w-full h-screen relative">
-                <img className="hero w-full h-full object-cover shadow" src={`storage/HeroImage/hero-img.jpg`} alt="Hero Image" />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start lg:items-center px-4 sm:px-8 md:px-16 lg:px-24 z-1 w-full h-full">
-                    <div className="himsi text-start md:text-center">
-                        <h1 className="text-white font-bold text-4xl md:text-5xl font-handlee">Himsi <span className='font-bold px-3 italic bg-[#EDB848] p-1 text-primary'>Kaliabang</span></h1>
-                        <p className="mt-4 text-white text-xl md:text-2xl animate-slideInLeft">
-                            Membangun kreativitas, meretas batas inovasi.
-                        </p>
-                    </div>
-
-                    <div className="btn-explore py-6 flex justify-center items-center w-full">
-                        <button aria-label="btn-explore" className="rounded-md bg-white px-4 py-2">
-                            EXPLORE KUY
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section> */}
-        {/* END HERO SECTION */}
-
-        {/* HERO SECTION */}
         <section id="hero" className="w-full min-h-screen">
             <div className="flex w-full h-screen relative">
             <div
@@ -66,14 +44,13 @@ export default function Home() {
         </section>
         {/* END HERO SECTION */}
 
-        {/* INTRODUCTION HIMSI */}
-        <section className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-2 px-5 lg:px-[100px] items-center justify-center h-screen">
-            {/* Gambar - memastikan sejajar di lg */}
+        {/* PENGENALAN HIMSI */}
+        <section id="tentang-himsi" className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-2 px-5 lg:px-[100px] items-center justify-center h-screen">
+
             <div className="himsi-logo flex justify-center lg:items-center">
                 <img className="w-32 w-40 md:w-60 lg:w-60 h-auto object-cover" src={`storage/HimsiLogo/himsi.jpg`} alt="HIMSI Image" />
             </div>
 
-            {/* Teks - memastikan sejajar di lg */}
             <div className="title flex flex-col items-center text-center md:items-start md:text-left">
                 <div className="section-title text-base sm:text-lg font-semibold mb-5 mt-3">
                     <span className="relative inline-block px-4">
@@ -97,10 +74,10 @@ export default function Home() {
                 </div>
             </div>
         </section>
-        {/* END INTRODUCTION HIMSI */}
+        {/* END PENGENALAN HIMSI */}
 
         {/* SEJARAH HIMSI */}
-        <section className="w-full relative bg-primary px-4 md:px-12 lg:px-12 py-5  items-center justify-center">
+        <section id="sejarah-himsi" className="w-full relative bg-primary px-4 md:px-20 lg:px-20 py-5  items-center justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 p-2 text-secondary gap-5">
                 <div className="content">
                     <h1 className="text-2xl sm:text-2xl md:text-3xl font-handlee font-bold py-2">Sejarah Singkat Himsi</h1>
@@ -114,7 +91,7 @@ export default function Home() {
         {/* END SEJARAH HIMSI */}
 
         {/* SAMBUTAN HIMSI */}
-        <section className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-2 px-5 lg:px-[100px] items-center justify-center h-screen">
+        <section className="welcome-section flex-col md:grid md:grid-cols-2 lg:grid-cols-2 px-5 lg:px-[100px] items-center justify-center h-screen">
             <div className="himsi-logo flex justify-center lg:items-center">
                 <img className="w-32 w-40 md:w-60 lg:w-80 h-auto object-cover" src={`storage/BPHImage/isnan_3.jpg`} alt="BPH Image" />
             </div>
@@ -133,8 +110,8 @@ export default function Home() {
         </section>
         {/* END SAMBUTAN HIMSI */}
 
-        {/* DIVISION */}
-        <section className="w-full min-h-screen px-4 md:px-12 lg:px-[100px] py-5">
+        {/* DIVISI */}
+        <section className="division-section w-full min-h-screen px-4 md:px-12 lg:px-[100px] py-5">
                 <div className="section-title text-base sm:text-lg font-semibold mb-5 mt-3 text-center">
                     <span className="relative inline-block px-4">
                         <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
@@ -186,36 +163,284 @@ export default function Home() {
                         </div>
                     </div>  
                 </div>
-
         </section>
-        {/* END DIVISION */}
+        {/* END DIVISI */}
 
-        {/* SOCIAL MEDIA HIMSI */}
-        <section id="hero" className="w-full">
+        {/* SOSIAL MEDIA HIMSI */}
+        <section id="hero" className="social-media-section w-full">
             <div className="flex w-full relative">
-            <div
-                className="hero w-full h-48 bg-cover bg-center bg-fixed"
-                style={{
-                    backgroundImage: "url('/storage/HeroImage/hero-img.jpg')"
-                }}
-                >                
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start lg:items-center px-4 sm:px-8 md:px-16 lg:px-24 z-1 w-full h-full">
-                    <div className="social-media grid grid-cols-3 gap-5 mx-auto">
+                <div
+                    className="article-image-background hero w-full h-48 bg-cover bg-center bg-fixed"
+                    style={{
+                        backgroundImage: "url('/storage/HeroImage/hero-img.jpg')"
+                    }}
+                    >                
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start lg:items-center px-4 sm:px-8 md:px-16 lg:px-24 z-1 w-full h-full">
+                        <div className="social-media grid grid-cols-3 gap-5 mx-auto">
+                            <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
+                                <i className="fa-brands fa-instagram text-primary text-xl"></i>
+                            </Link>
+                            <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
+                                <i className="fa-brands fa-tiktok text-primary"></i>
+                            </Link>
+                            <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
+                                <i className="fa-brands fa-youtube text-primary"></i>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {/* END SOSIAL MEDIA HIMSI */}
+
+        {/* ARTIKEL HIMSI */}
+        <section id="artikel-himsi" className="article-section w-full px-4 md:px-12 lg:px-[100px] py-5">
+            <div className="article-section-title text-base sm:text-lg font-semibold mb-5 mt-3 text-center">
+                <span className="relative inline-block px-4">
+                    <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
+                    <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
+                </span>
+            </div>
+            <div className="article-title text-center mb-5">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-handlee font-bold">Artikel Terbaru</h1>
+            </div>
+            <div className="article-content p-2 py-5 flex gap-3 mt-3 overflow-x-auto">
+                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                    <Link href="">
+                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-article">
+                            <img
+                                fetchpriority="high"
+                                src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
+                                alt="shaj"
+                                className="rounded-md object-cover w-full h-full"
+                                width="500"
+                                height="281"
+                                loading="lazy"
+                            />
+                            </div>
+                            <div className="content p-3">
+                            <div className="flex justify-between items-center">
+                                <p className="article-date text-gray-400 text-start text-sm">
+                                    01-06-2025
+                                </p>
+                                <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
+                                    <i className="fa-brands fa-gg-circle mr-2"></i>Programming
+                                </p>
+                            </div>
+                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                    <Link href="">
+                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-article">
+                            <img
+                                fetchpriority="high"
+                                src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
+                                alt="shaj"
+                                className="rounded-md object-cover w-full h-full"
+                                width="500"
+                                height="281"
+                                loading="lazy"
+                            />
+                            </div>
+                            <div className="content p-3">
+                            <div className="flex justify-between items-center">
+                                <p className="article-date text-gray-400 text-start text-sm">
+                                    01-06-2025
+                                </p>
+                                <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
+                                    <i className="fa-brands fa-gg-circle mr-2"></i>Programming
+                                </p>
+                            </div>
+                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                    <Link href="">
+                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-article">
+                            <img
+                                fetchpriority="high"
+                                src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
+                                alt="shaj"
+                                className="rounded-md object-cover w-full h-full"
+                                width="500"
+                                height="281"
+                                loading="lazy"
+                            />
+                            </div>
+                            <div className="content p-3">
+                            <div className="flex justify-between items-center">
+                                <p className="article-date text-gray-400 text-start text-sm">
+                                    01-06-2025
+                                </p>
+                                <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
+                                    <i className="fa-brands fa-gg-circle mr-2"></i>Programming
+                                </p>
+                            </div>
+                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                    <Link href="">
+                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-article">
+                            <img
+                                fetchpriority="high"
+                                src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
+                                alt="shaj"
+                                className="rounded-md object-cover w-full h-full"
+                                width="500"
+                                height="281"
+                                loading="lazy"
+                            />
+                            </div>
+                            <div className="content p-3">
+                            <div className="flex justify-between items-center">
+                                <p className="article-date text-gray-400 text-start text-sm">
+                                    01-06-2025
+                                </p>
+                                <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
+                                    <i className="fa-brands fa-gg-circle mr-2"></i>Programming
+                                </p>
+                            </div>
+                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+        </section>
+        {/* END ARTIKEL HIMSI */}
+
+        {/* LAYANAN HIMSI */}
+        <section className="service-section w-full md:px-12 lg:px-12 py-5">
+            <div className="service-section-title text-base sm:text-lg font-semibold mb-5 mt-3 text-center">
+                <span className="relative inline-block px-4">
+                    <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
+                    <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
+                </span>
+            </div>
+            <div className="service-title text-center mb-5">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-handlee font-bold">Layanan HIMSI</h1>
+            </div>
+            <div className="service-content p-2 py-5 gap-4 mt-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  w-fit mx-auto place-items-center items-center">
+            <div className="card-service min-w-[20rem] lg:min-w-[20rem] w-[10rem] lg:w-[20rem] shadow-lg rounded-md">
+                <Link href="">
+                    <div className="card-service bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                        <div className="banner-service text-center text-primary">
+                            <i className="fa-solid fa-comment-dots text-5xl mt-5"></i>
+                        </div>
+                        <div className="content p-5">
+                            <h1 className="service-title-apply font-inter-bold text-2xl text-primary">Kritik & Saran</h1>
+                            <p className="text-sm">Menampung aspirasi dan masukan demi kemajuan HIMSI</p>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+
+            <div className="card-service min-w-[20rem] lg:min-w-[20rem] w-[10rem] lg:w-[20rem] shadow-lg rounded-md">
+                <Link href="">
+                    <div className="card-service bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                        <div className="banner-service text-center text-primary">
+                            <i className="fa-solid fa-check-to-slot text-5xl mt-5"></i>
+                        </div>
+                        <div className="content p-5">
+                            <h1 className="service-title-apply font-inter-bold text-2xl text-primary">HIMSI SmartVote</h1>
+                            <p className="text-sm">Pemilihan Ketua dan Wakil Ketua HIMSI Periode 2025</p>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+
+            <div className="card-service min-w-[20rem] lg:min-w-[20rem] w-[10rem] lg:w-[20rem] shadow-lg rounded-md">
+                <Link href="">
+                    <div className="card-service bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                        <div className="banner-service text-center text-primary">
+                            <i className="fa-solid fa-hand-holding-heart text-5xl mt-5"></i>
+                        </div>
+                        <div className="content p-5">
+                            <h1 className="service-title-apply font-inter-semibold text-2xl text-primary">HIMSI Care</h1>
+                            <p className="text-sm">Dukungan dan bantuan sosial bagi mahasiswa yang membutuhkan</p>
+                        </div>
+                    </div>
+                </Link>
+            </div>
+
+            </div>
+        </section>
+        {/* END ARTIKEL HIMSI */}
+
+        {/* FOOTER */}
+        <section className="service-section w-full px-4 md:px-20 lg:px-20 py-5 bg-primary text-white">
+            <div className="container md:flex lg:flex gap-12 items-start">
+                 {/* Logo dan Alamat (Tetap di Kiri) */}
+                <div className="md:col-span-1 text-left">
+                    <img src="" alt="" />
+                    <h2 className="text-xl font-bold">Himpunan Mahasiswa Sistem Informasi Kaliabang</h2>
+                    <p className="mt-2 text-sm">Jl. Kali Abang Tengah No.8, Perwira, Kec. Bekasi Utara, Kota Bks, Jawa Barat 17122</p>
+                    <div className="social-media flex gap-3 mx-auto mt-5">
                         <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
                             <i className="fa-brands fa-instagram text-primary text-xl"></i>
                         </Link>
                         <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
-                            <i className="fa-brands fa-tiktok"></i>
+                            <i className="fa-brands fa-tiktok text-primary"></i>
                         </Link>
                         <Link className="bg-secondary p-2 rounded-md w-[50px] h-[50px] flex items-center justify-center">
-                            <i className="fa-brands fa-youtube"></i>
+                            <i className="fa-brands fa-youtube text-primary"></i>
                         </Link>
                     </div>
                 </div>
+
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-12 mt-5 md:mt-0 lg:mt-0">
+                    {/* Navigasi */}
+                    <div>
+                        <h2 className="text-lg font-bold">Peta Situs</h2>
+                        <ul className="mt-2 space-y-2 text-sm">
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="/" className="hover:underline">Beranda</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#tentang-himsi" className="hover:underline">Tentang HIMSI</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#sejarah-himsi" className="hover:underline">Sejarah HIMSI</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#artikel-himsi" className="hover:underline">Artikel HIMSI</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Divisi */}
+                    <div>
+                        <h2 className="text-lg font-bold">Divisi</h2>
+                        <ul className="mt-2 space-y-2 text-sm">
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">RSDM</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">KOMINFO</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">LITBANG</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">PENDIDIKAN</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">BPH</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Layanan */}
+                    <div>
+                        <h2 className="text-lg font-bold">Layanan</h2>
+                        <ul className="mt-2 space-y-2 text-sm">
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">Kritik & Saran</Link></li>
+                            <li className="ml-3 md:ml-3 lg:ml-0"><Link href="#" className="hover:underline">HIMSI SmartVote</Link></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            {/* Copyright dan Developer */}
+            <div className="mt-10 border-t border-gray-400 pt-4 text-center text-sm">
+                <p>Copyright © HIMSI KALIABANG 2025. All rights reserved.</p>
             </div>
         </section>
-        {/* END SOCIAL MEDIA HIMSI */}
+        {/* END FOOTER */}
         
        </>
     );
