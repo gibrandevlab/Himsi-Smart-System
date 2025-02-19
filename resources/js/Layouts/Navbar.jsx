@@ -4,14 +4,22 @@ import { useState, useEffect  } from 'react';
 const Navbar = () => {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
     const [isDivisionOpen, setIsDivisionOpen] = useState(false);
+    const [isServiceOpen, setIsServiceOpen] = useState(false);
 
     const toggleBars = () => {
         setIsNavbarOpen(!isNavbarOpen);
         setIsDivisionOpen(false);
+        setIsServiceOpen(false);
     };
     
     const toggleDivision = () => {
         setIsDivisionOpen(!isDivisionOpen);
+        setIsServiceOpen(false);
+    };
+
+    const toggleService = () => {
+        setIsServiceOpen(!isServiceOpen);
+        setIsDivisionOpen(false);
     };
 
     const [isNavbarScrolled, setIsNavbarScrolled] = useState(false);
@@ -56,6 +64,9 @@ const Navbar = () => {
                             <li>
                                 <Link>Beranda</Link>
                             </li>
+                            <li>
+                                <Link>Artikel HIMSI</Link>
+                            </li>
                             <li className="relative">
                                 <button aria-label="btn-division" onClick={toggleDivision}>
                                     <span>Divisi HIMSI</span>
@@ -71,11 +82,18 @@ const Navbar = () => {
                                     </ul>
                                 )}
                             </li>
-                            <li>
-                                <Link>Artikel HIMSI</Link>
-                            </li>
-                            <li>
-                                <Link>Layanan HIMSI</Link>
+                            <li className="relative">
+                                <button aria-label="btn-division" onClick={toggleService}>
+                                    <span>Layanan HIMSI</span>
+                                    <i className={`fa-solid ml-2 ${isServiceOpen ? 'fa-caret-up' : 'fa-caret-down'}`}></i>
+                                </button>
+                                {isServiceOpen && (
+                                    <ul className="division absolute left-0 top-full z-10 mt-1 shadow-lg rounded-md bg-secondary shadow px-2 py-2 text-black">
+                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">Kritik & Saran</li>
+                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">HIMSI SmartVote</li>
+                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">HIMSI Care</li>
+                                    </ul>
+                                )}
                             </li>
                         </ul>
                         <button aria-label="btn-news" className="bg-primary hidden md:block bg-slate-900 text-white py-2 px-6 rounded-md">
@@ -113,9 +131,12 @@ const Navbar = () => {
                 </button>
                 {/* END BTN CLOSE BARS */}
 
-                <ul className="text-white text-2xl space-y-4">
+                <ul className="text-white text-2xl space-y-4 font-inter-semibold">
                     <li>
-                        <Link>Beranda</Link>
+                        <Link className="hover:text-secondary">Beranda</Link>
+                    </li>
+                    <li>
+                        <Link className="hover:text-secondary">Artikel HIMSI</Link>
                     </li>
                     <li>
                         <button aria-label="btn-division" onClick={toggleDivision}>
@@ -123,23 +144,30 @@ const Navbar = () => {
                             <i className={`fa-solid ml-2 ${isDivisionOpen === true ? 'fa-caret-up' : 'fa-caret-down'}`}></i>    
                         </button>
                         {isDivisionOpen && (
-                            <ul className="division mt-1 shadow-lg rounded bg-secondary text-xl ml-8 p-2">
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">BPH</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">RSDM</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">KOMINFO</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">LITBANG</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">PENDIDIKAN</li>
+                            <ul className="division mt-2 shadow-lg rounded bg-secondary text-xl ml-8 p-2 text-black">
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">BPH</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">RSDM</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">KOMINFO</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">LITBANG</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">PENDIDIKAN</li>
                             </ul>
                         )}
                     </li>
                     <li>
-                        <Link>Artikel HIMSI</Link>
+                        <button aria-label="btn-division" className="hover:text-secondary mb-2" onClick={toggleService}>
+                            <span>Layanan HIMSI</span>
+                            <i className={`fa-solid ml-2 ${isServiceOpen === true ? 'fa-caret-up' : 'fa-caret-down'}`}></i>    
+                        </button>
+                        {isServiceOpen && (
+                            <ul className="division mt-2 shadow-lg rounded bg-secondary text-xl ml-8 p-2">
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">Kritik & Saran</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">HIMSI SmartVote</li>
+                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full text-black cursor-pointer">HIMSI Care</li>
+                            </ul>
+                        )}
                     </li>
                     <li>
-                        <Link>Layanan HIMSI</Link>
-                    </li>
-                    <li>
-                        <Link>Masuk</Link>
+                        <Link className="bg-secondary py-2 p-3 text-primary rounded-md">Masuk</Link>
                     </li>
                 </ul>
                 </div>
