@@ -26,9 +26,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Menangani permintaan autentikasi masuk.
      */
-    public function store(Request $request)
-    {
-        dd($request->all());
+    public function store(Request $request) {
         $request->validate([
             'login'    => 'required',
             'password' => 'required',
@@ -56,15 +54,17 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check($password, $user->password)) {
             RateLimiter::clear($throttleKey);
 
-            Auth::login($user);
+            $remember = $request->has('remember');
+
+            Auth::login($user, $remember);
             $request->session()->regenerate();
 
             return redirect()->intended(route('dashboard'));
         }
+
         RateLimiter::hit($throttleKey, 60);
 
         return back()->withErrors(['login' => 'Login gagal, periksa kembali NIM/Email dan Password.']);
-
     }
 
     public function destroy(Request $request)

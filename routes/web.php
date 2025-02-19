@@ -1,37 +1,33 @@
 <?php
 
-
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\User\AbsensiController;
+use App\Http\Controllers\DashboardController;
 
-#Homepages
-Route::get('/', function () {
-    return Inertia::render('Guest/Home');
+// Guest Routes
+Route::get('/', fn() => Inertia::render('Guest/Home'))->name('home');
+
+// Dashboard Routes (role: superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris)
+Route::middleware([
+    'role:superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris'
+])->group(function () {
+    // Route::get('/dashboard', action: [DashboardController::class, 'dashboard'])->name('dashboard');
 });
 
-#WriteandReadDataAccess Routes
-Route::middleware(['role:superadmin', 'role:wakil_kordinator', 'role:ketua_kordinator', 'role:ketua_cabang', 'role:wakil_cabang', 'role:bendahara', 'role:sekretaris'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+// Divisi Routes
+Route::prefix('divisi')->group(function () {
+    Route::get('/pendidikan', fn() => Inertia::render('Divisi/Pendidikan/Home'))->name('divisi.pendidikan.home');
+    Route::get('/rsdm', fn() => Inertia::render('Divisi/Rsdm/Home'))->name('divisi.rsdm.home');
+    Route::get('/litbang', fn() => Inertia::render('Divisi/Litbang/Home'))->name('divisi.litbang.home');
+    Route::get('/kominfo', fn() => Inertia::render('Divisi/Kominfo/Home'))->name('divisi.kominfo.home');
 });
 
+// Absensi Routes
+Route::post('/absen', [AbsensiController::class, 'absen'])->name('absen');
+Route::get('/absen', fn() => Inertia::render(component: 'Guest/Home'))->name('absen/view');
+// Route::get('/absen', [AbsensiController::class, 'viewabsen'])->name('absen/view');
 
-#ReadDataAccess Routes
-Route::group(['prefix' => 'divisi'], function () {
-    Route::get('/pendidikan', function () {
-        return Inertia::render('Divisi/Pendidikan/Home');
-    });
 
-    Route::get('/rsdm', function () {
-        return Inertia::render('Divisi/Rsdm/Home');
-    });
-
-    Route::get('/litbang', function () {
-        return Inertia::render('Divisi/Litbang/Home');
-    });
-
-    Route::get('/kominfo', function () {
-        return Inertia::render('Divisi/Kominfo/Home');
-    });
-});
-require __DIR__.'/auth.php';
+// Authentication Routes
+require __DIR__ . '/auth.php';

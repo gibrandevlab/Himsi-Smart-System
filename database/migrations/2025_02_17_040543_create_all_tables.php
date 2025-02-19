@@ -120,6 +120,7 @@ return new class extends Migration
             $table->dateTime('mulai');
             $table->dateTime('selesai');
             $table->foreignId('id_pic')->constrained('anggota')->onDelete('cascade');
+            $table->string('kordinat_lokasi');
             $table->tinyInteger('status');
         });
 
