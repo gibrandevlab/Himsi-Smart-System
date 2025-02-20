@@ -17,7 +17,7 @@ Route::middleware([
 
 // Divisi Routes
 Route::prefix('divisi')->group(function () {
-    Route::get('/pendidikan', fn() => Inertia::render('Divisi/Pendidikan/Home'))->name('divisi.pendidikan.home');
+    Route::get('/pendidikan', fn() => Inertia::render('Guest/Divisi'))->name('divisi.pendidikan.home');
     Route::get('/rsdm', fn() => Inertia::render('Divisi/Rsdm/Home'))->name('divisi.rsdm.home');
     Route::get('/litbang', fn() => Inertia::render('Divisi/Litbang/Home'))->name('divisi.litbang.home');
     Route::get('/kominfo', fn() => Inertia::render('Divisi/Kominfo/Home'))->name('divisi.kominfo.home');
