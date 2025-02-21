@@ -193,7 +193,7 @@ export default function Divisi() {
             {/* END ANGGOTA */}
 
             {/* RENCANA KEGIATAN (PROKER) */}
-            <section className="proker-divisi py-3 px-4 md:px-12 lg:px-[100px] min-h-screen">
+            <section className="proker-divisi py-5 mb-5 px-4 md:px-12 lg:px-[100px]">
                 <div className="text-center mb-6">
                     <div className="relative inline-block px-4 text-lg font-semibold">
                         <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
@@ -218,7 +218,7 @@ export default function Divisi() {
                                 <td className="py-4 px-6">
                                     <button
                                         onClick={() => setIsOpen(true)}
-                                        className="p-2 px-3 bg-primary text-white rounded"
+                                        className="p-2 px-3 bg-primary text-white rounded hover:scale-110 transition"
                                     >
                                         <i className="fa-solid fa-eye text-sm"></i>
                                     </button>
@@ -232,7 +232,7 @@ export default function Divisi() {
                                 <td className="py-4 px-6">
                                     <button
                                         onClick={() => setIsOpen(true)}
-                                        className="p-2 px-3 bg-primary text-white rounded"
+                                        className="p-2 px-3 bg-primary text-white rounded hover:scale-110 transition"
                                     >
                                         <i className="fa-solid fa-eye text-sm"></i>
                                     </button>
@@ -247,8 +247,7 @@ export default function Divisi() {
             </section>
 
             <Modal show={isOpen} onClose={() => setIsOpen(false)} maxWidth="full_sm">
-                <div className="relative content-modal-proker p-3">
-                    {/* Tombol Close (X) */}
+                <div className="relative content-modal-proker p-3 overflow-y-auto h-96">
                     <button 
                         onClick={() => setIsOpen(false)} 
                         className="absolute top-2 right-3 text-gray-500 hover:text-gray-700"
@@ -262,7 +261,9 @@ export default function Divisi() {
                     </div>
                     <div className="label mb-1 mt-2">
                         <h3 className="text-base font-inter-semibold">Deskripsi Proker :</h3>
-                        <p className="text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat veniam ut id facere, aspernatur illum culpa assumenda dolorum pariatur! Voluptatibus dolor aut sed vel cupiditate inventore magnam? Placeat, corrupti repudiandae?</p>
+                        <p className="text-sm">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias consequatur eveniet reiciendis placeat doloribus ratione cupiditate nostrum adipisci fugiat nihil, ipsam eius atque beatae eum magni perferendis, vero voluptate tenetur aliquam nobis rerum. Ipsam, blanditiis laudantium maxime enim praesentium soluta ullam itaque! Possimus eum ratione veniam, quidem odio beatae, ex unde natus odit amet debitis, nesciunt non soluta totam quisquam porro. Eligendi blanditiis, ipsum aspernatur nulla vitae temporibus fugit aliquam. Consequatur voluptates deserunt ea corrupti omnis ratione soluta molestiae laudantium molestias, inventore aliquam, rerum nobis, dolores sunt accusamus amet neque in tenetur et praesentium dolorum a vero? Aspernatur, odio? Aspernatur.
+                        </p>
                     </div>
                     <div className="label mb-1 mt-2">
                         <h3 className="text-base font-inter-semibold">Waktu :</h3>
