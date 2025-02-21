@@ -57,12 +57,12 @@ const Navbar = () => {
             >
                 <div className="w-full justify-between items-center border-b border-gray-300 flex pb-6">
                     <div className="himsi-logo flex justify-center lg:items-center">
-                        <img className="w-32 w-20 h-auto object-cover" src={`storage/HimsiLogo/himcore.png`} alt="HIMSI Image" />
+                        <img className="w-32 w-20 h-auto object-cover" src={`/storage/HimsiLogo/himcore.png`} alt="HIMSI Image" />
                     </div>
                     <div className="flex gap-6 items-center">
                         <ul className="hidden md:flex gap-8 nav-items">
                             <li>
-                                <Link>Beranda</Link>
+                                <Link href="/">Beranda</Link>
                             </li>
                             <li>
                                 <Link>Artikel HIMSI</Link>

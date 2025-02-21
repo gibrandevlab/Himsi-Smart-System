@@ -7,7 +7,7 @@ export default function Home() {
        <>
         <Head titleTemplate="%s">
             <title>Himsi Kaliabang</title>
-            <link rel="icon" href={`storage/Favicon/himsikla.jpg`} type="image/x-icon" />
+            <link rel="icon" href={`/storage/Favicon/himsikla.jpg`} type="image/x-icon" />
             <meta name="description" content="onprogress" />
             <meta name="keywords" content="onprogress" />
             <meta name="author" content="onprogress" />
@@ -85,7 +85,7 @@ export default function Home() {
                     <p>HIMSI (Himpunan Mahasiswa Sistem Informasi) merupakan organisasi mahasiswa sistem informasi yang berdiri sejak 2006 yang dulunya bernama HIMMI (Himpunan Mahasiswa Manajemen Informatika) dan sejak 2019 HIMMI resmi berubah nama menjadi HIMSI berdasarkan SK No.601/102/UBSI/II/2019.</p>
                 </div>
                 <div className="img-himsi-kaliabang flex justify-center md:justify-center lg:justify-end">
-                    <img className="w-32 w-40 md:w-60 lg:w-60 h-auto object-cover" src={`storage/HimsiLogo/himsikla.jpeg`} alt="HIMSI Image" />
+                    <img className="w-32 w-40 md:w-60 lg:w-60 h-auto object-cover" src={`/storage/HimsiLogo/himsikla.jpeg`} alt="HIMSI Image" />
                 </div>
             </div>
         </section>
@@ -94,7 +94,7 @@ export default function Home() {
         {/* SAMBUTAN HIMSI */}
         <section className="welcome-section flex-col md:grid md:grid-cols-2 lg:grid-cols-2 px-5 lg:px-[100px] items-center justify-center h-screen">
             <div className="himsi-logo flex justify-center lg:items-center">
-                <img className="w-32 w-40 md:w-60 lg:w-80 h-auto object-cover" src={`storage/BPHImage/isnan_3.jpg`} alt="BPH Image" />
+                <img className="w-32 w-40 md:w-60 lg:w-80 h-auto object-cover" src={`/storage/BPHImage/isnan_3.jpg`} alt="BPH Image" />
             </div>
             <div className="title flex flex-col items-center text-center md:items-start md:text-left">
                 <div className="section-title text-base sm:text-lg font-semibold mb-5 mt-3">
