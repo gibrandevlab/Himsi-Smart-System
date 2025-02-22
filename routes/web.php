@@ -3,21 +3,28 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\User\AbsensiController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dashboard\AnggotaController;
+use App\Http\Controllers\Dashboard\UserController;
 
 // Guest Routes
 Route::get('/', fn() => Inertia::render('Guest/Home'))->name('home');
-
-// Article Routes
-Route::get('/blog', fn() => Inertia::render('Guest/Blog'))->name('blog');
-Route::get('/blog/laravel-dasar', fn() => Inertia::render('Guest/DetailBlog'))->name('blog');
-
-// Dashboard Routes (role: superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris)
-Route::middleware([
-    'role:superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris'
-])->group(function () {
-    // Route::get('/dashboard', action: [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::prefix('blog')->group(function () {
+    Route::get('/', fn() => Inertia::render('Guest/Blog'))->name('blog');
+    Route::get('/laravel-dasar', fn() => Inertia::render('Guest/DetailBlog'))->name('blog.detail');
 });
+
+// Dashboard Routes (akses untuk beberapa role)
+Route::middleware(['role:superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris'])
+    ->group(function () {
+        // Contoh: Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    });
+
+// Admin Routes (khusus superadmin)
+Route::middleware(['auth', 'role:superadmin'])
+    ->group(function () {
+        Route::resource('anggota', AnggotaController::class);
+        Route::resource('users', UserController::class);
+    });
 
 // Divisi Routes
 Route::prefix('divisi')->group(function () {
@@ -27,13 +34,11 @@ Route::prefix('divisi')->group(function () {
     Route::get('/kominfo', fn() => Inertia::render('Divisi/Kominfo/Home'))->name('divisi.kominfo.home');
 });
 
-// Absensi Routes
+// Absensi Routes (khusus member)
 Route::middleware(['role:member'])->group(function () {
     Route::post('/absen', [AbsensiController::class, 'absen'])->name('absen');
-    Route::get('/absen', fn() => Inertia::render(component: 'Guest/Home'))->name('absen/view');
-    // Route::get('/absen', [AbsensiController::class, 'viewabsen'])->name('absen/view');
+    Route::get('/absen', fn() => Inertia::render('Guest/Home'))->name('absen.view');
 });
 
-
-// Authentication Routes
+// Auth Routes
 require __DIR__ . '/auth.php';
