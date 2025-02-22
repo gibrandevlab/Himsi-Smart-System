@@ -105,6 +105,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nim')->unique();
+            $table->string('no_telpon')->nullable();
             $table->tinyInteger('status_aktif');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('periode');

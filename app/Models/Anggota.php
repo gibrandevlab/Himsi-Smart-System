@@ -18,6 +18,7 @@ class Anggota extends Model
         'id_user',
         'periode',
         'divisi',
+        'no_telpon',
     ];
 
     // Relasi: Anggota milik User
