@@ -8,6 +8,10 @@ use App\Http\Controllers\DashboardController;
 // Guest Routes
 Route::get('/', fn() => Inertia::render('Guest/Home'))->name('home');
 
+// Article Routes
+Route::get('/blog', fn() => Inertia::render('Guest/Blog'))->name('blog');
+Route::get('/blog/laravel-dasar', fn() => Inertia::render('Guest/DetailBlog'))->name('blog');
+
 // Dashboard Routes (role: superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris)
 Route::middleware([
     'role:superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris'
