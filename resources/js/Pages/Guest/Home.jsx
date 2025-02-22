@@ -20,27 +20,27 @@ export default function Home() {
         {/* HERO SECTION */}
         <section id="hero" className="w-full min-h-screen">
             <div className="flex w-full h-screen relative">
-            <div
-                className="hero w-full h-full bg-cover bg-center bg-fixed"
-                style={{
-                    backgroundImage: "url('/storage/HeroImage/hero-img.jpg')"
-                }}
-                >                
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start lg:items-center px-4 sm:px-8 md:px-16 lg:px-24 z-1 w-full h-full">
-                    <div className="himsi text-start md:text-center">
-                        <h1 className="text-white font-bold text-4xl md:text-5xl font-handlee">Himsi <span className='font-bold px-3 italic bg-[#EDB848] p-1 text-primary'>Kaliabang</span></h1>
-                        <p className="mt-4 text-white text-xl md:text-2xl animate-slideInLeft">
-                            Membangun kreativitas, meretas batas inovasi.
-                        </p>
-                    </div>
+                <div
+                    className="hero w-full h-full bg-cover bg-center bg-fixed"
+                    style={{
+                        backgroundImage: "url('/storage/HeroImage/hero-img.jpg')"
+                    }}
+                    >                
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-start lg:items-center px-4 sm:px-8 md:px-16 lg:px-24 z-1 w-full h-full">
+                        <div className="himsi text-start md:text-center">
+                            <h1 className="text-white font-bold text-4xl md:text-5xl font-handlee">Himsi <span className='font-bold px-3 italic bg-[#EDB848] p-1 text-primary'>Kaliabang</span></h1>
+                            <p className="mt-4 text-white text-xl md:text-2xl animate-slideInLeft">
+                                Membangun kreativitas, meretas batas inovasi.
+                            </p>
+                        </div>
 
-                    <div className="btn-explore py-6 flex justify-center items-center w-full">
-                        <button aria-label="btn-explore" className="rounded-md bg-white px-4 py-2">
-                            SCROLL DOWN <i className="fa-solid fa-computer-mouse"></i>
-                        </button>
+                        <div className="btn-explore py-6 flex justify-center items-center w-full">
+                            <button aria-label="btn-explore" className="rounded-md bg-white px-4 py-2">
+                                SCROLL DOWN <i className="fa-solid fa-computer-mouse"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </section>
         {/* END HERO SECTION */}
@@ -194,22 +194,22 @@ export default function Home() {
         </section>
         {/* END SOSIAL MEDIA HIMSI */}
 
-        {/* ARTIKEL HIMSI */}
-        <section id="artikel-himsi" className="article-section w-full px-4 md:px-12 lg:px-[100px] py-5">
-            <div className="article-section-title text-base sm:text-lg font-semibold mb-5 mt-3 text-center">
+        {/* BLOG HIMSI */}
+        <section id="blog-himsi" className="blog-section w-full px-4 md:px-12 lg:px-[100px] py-5">
+            <div className="blog-section-title text-base sm:text-lg font-semibold mb-5 mt-3 text-center">
                 <span className="relative inline-block px-4">
                     <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
                     <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
                 </span>
             </div>
-            <div className="article-title text-center mb-5">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-handlee font-bold">Artikel Terbaru</h1>
+            <div className="blog-title text-center mb-5">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-handlee font-bold">BLOG Terbaru</h1>
             </div>
-            <div className="article-content p-2 py-5 flex gap-3 mt-3 overflow-x-auto">
-                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+            <div className="blog-content p-2 py-5 flex gap-3 mt-3 overflow-x-auto">
+                <div className="card-blog min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
                     <Link href="">
-                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
-                            <div className="banner-article">
+                        <div className="card-blog bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-blog">
                             <img
                                 fetchpriority="high"
                                 src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
@@ -222,22 +222,22 @@ export default function Home() {
                             </div>
                             <div className="content p-3">
                             <div className="flex justify-between items-center">
-                                <p className="article-date text-gray-400 text-start text-sm">
+                                <p className="blog-date text-gray-400 text-start text-sm">
                                     01-06-2025
                                 </p>
                                 <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
                                     <i className="fa-brands fa-gg-circle mr-2"></i>Programming
                                 </p>
                             </div>
-                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            <h1 className="blog-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
                             </div>
                         </div>
                     </Link>
                 </div>
-                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                <div className="card-blog min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
                     <Link href="">
-                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
-                            <div className="banner-article">
+                        <div className="card-blog bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-blog">
                             <img
                                 fetchpriority="high"
                                 src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
@@ -250,22 +250,22 @@ export default function Home() {
                             </div>
                             <div className="content p-3">
                             <div className="flex justify-between items-center">
-                                <p className="article-date text-gray-400 text-start text-sm">
+                                <p className="blog-date text-gray-400 text-start text-sm">
                                     01-06-2025
                                 </p>
                                 <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
                                     <i className="fa-brands fa-gg-circle mr-2"></i>Programming
                                 </p>
                             </div>
-                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            <h1 className="blog-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
                             </div>
                         </div>
                     </Link>
                 </div>
-                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                <div className="card-blog min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
                     <Link href="">
-                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
-                            <div className="banner-article">
+                        <div className="card-blog bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-blog">
                             <img
                                 fetchpriority="high"
                                 src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
@@ -278,22 +278,22 @@ export default function Home() {
                             </div>
                             <div className="content p-3">
                             <div className="flex justify-between items-center">
-                                <p className="article-date text-gray-400 text-start text-sm">
+                                <p className="blog-date text-gray-400 text-start text-sm">
                                     01-06-2025
                                 </p>
                                 <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
                                     <i className="fa-brands fa-gg-circle mr-2"></i>Programming
                                 </p>
                             </div>
-                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            <h1 className="blog-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
                             </div>
                         </div>
                     </Link>
                 </div>
-                <div className="card-article min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
+                <div className="card-blog min-w-[20rem] lg:min-w-[25rem] w-full lg:w-[25rem] shadow-sm rounded-md">
                     <Link href="">
-                        <div className="card-article bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
-                            <div className="banner-article">
+                        <div className="card-blog bg-white transition-all duration-300 hover:shadow-xl hover:ring-primary/50">
+                            <div className="banner-blog">
                             <img
                                 fetchpriority="high"
                                 src="https://himsiubsitegal.my.id/images/artikel/1724761323.jpg"
@@ -306,21 +306,21 @@ export default function Home() {
                             </div>
                             <div className="content p-3">
                             <div className="flex justify-between items-center">
-                                <p className="article-date text-gray-400 text-start text-sm">
+                                <p className="blog-date text-gray-400 text-start text-sm">
                                     01-06-2025
                                 </p>
                                 <p className="category bg-primary text-secondary p-1 px-2 rounded-md text-xs flex items-center">
                                     <i className="fa-brands fa-gg-circle mr-2"></i>Programming
                                 </p>
                             </div>
-                            <h1 className="article-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
+                            <h1 className="blog-title-apply mt-3 font-inter-semibold text-lg">Routing di Laravel: Panduan Dasar untuk Mengelola Rute Aplikasi..</h1>
                             </div>
                         </div>
                     </Link>
                 </div>
             </div>
         </section>
-        {/* END ARTIKEL HIMSI */}
+        {/* END BLOG HIMSI */}
 
         {/* LAYANAN HIMSI */}
         <section className="service-section w-full md:px-12 lg:px-12 py-5">
@@ -378,7 +378,7 @@ export default function Home() {
 
             </div>
         </section>
-        {/* END ARTIKEL HIMSI */}        
+        {/* END LAYANAN HIMSI */}        
 
         {/* FOOTER */}
         <Footer/>
