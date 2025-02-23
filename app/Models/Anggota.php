@@ -12,30 +12,24 @@ class Anggota extends Model
     protected $table = 'anggota';
 
     protected $fillable = [
-        'nama',
-        'nim',
-        'status_aktif',
-        'id_user',
-        'periode',
-        'divisi',
-        'no_telpon',
+        'nama', 'nim', 'no_telpon', 'status_aktif', 'id_user', 'periode', 'divisi_id'
     ];
 
-    // Relasi: Anggota milik User
-    public function user()
+
+    public function divisi()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(Divisi::class, 'divisi_id');
     }
 
-    // Relasi: Sebagai PIC pada kegiatan
-    public function kegiatanAsPIC()
-    {
-        return $this->hasMany(Kegiatan::class, 'id_pic');
-    }
 
-    // Relasi: Anggota memiliki banyak absensi
-    public function absensis()
+    protected static function booted()
     {
-        return $this->hasMany(Absensi::class, 'id_anggota');
+        static::created(function ($anggota) {
+            $anggota->divisi()->increment('jumlah_anggota');
+        });
+
+        static::deleted(function ($anggota) {
+            $anggota->divisi()->decrement('jumlah_anggota');
+        });
     }
 }

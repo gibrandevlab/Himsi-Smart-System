@@ -100,6 +100,16 @@ return new class extends Migration
             $table->timestamp('failed_at')->useCurrent();
         });
 
+        // Tabel divisi
+        Schema::create('divisi', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama')->unique();
+            $table->text('deskripsi')->nullable();
+            $table->string('logo')->nullable();
+            $table->unsignedInteger('jumlah_anggota')->default(0);
+            $table->timestamps();
+        });
+
         // Tabel anggota
         Schema::create('anggota', function (Blueprint $table) {
             $table->id();
@@ -109,7 +119,7 @@ return new class extends Migration
             $table->tinyInteger('status_aktif');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('periode');
-            $table->enum('divisi', ['pendidikan', 'litbang', 'kominfo', 'rsdm']);
+            $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
         });
 
         // Tabel kegiatan
@@ -151,14 +161,14 @@ return new class extends Migration
             $table->foreign('id_kegiatan')->references('id')->on('kegiatan')->onDelete('set null');
         });
 
-        // Tabel proker (dibuat terlebih dahulu karena akan direferensikan)
+        // Tabel proker
         Schema::create('proker', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
             $table->text('deskripsi');
         });
 
-        // Tabel foto_proker (mengacu ke tabel proker)
+        // Tabel foto_proker
         Schema::create('foto_proker', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_proker')->constrained('proker')->onDelete('cascade');
@@ -169,7 +179,7 @@ return new class extends Migration
         Schema::create('transaksi_keuangan', function (Blueprint $table) {
             $table->id();
             $table->enum('jenis_transaksi', ['pemasukan', 'pengeluaran', 'denda']);
-            $table->date(column: 'tanggal');
+            $table->date('tanggal');
             $table->enum('bulan', [
                 'Januari',
                 'Februari',
@@ -209,6 +219,7 @@ return new class extends Migration
         Schema::dropIfExists('absensi');
         Schema::dropIfExists('kegiatan');
         Schema::dropIfExists('anggota');
+        Schema::dropIfExists('divisi');
         Schema::dropIfExists('failed_jobs');
         Schema::dropIfExists('job_batches');
         Schema::dropIfExists('jobs');
