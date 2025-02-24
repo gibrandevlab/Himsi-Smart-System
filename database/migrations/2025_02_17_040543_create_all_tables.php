@@ -108,7 +108,7 @@ return new class extends Migration
             $table->tinyInteger('status_aktif');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('periode');
-            $table->enum('divisi', ['pendidikan', 'litbang', 'kominfo', 'rsdm']);
+            $table->enum('divisi', ['pendidikan', 'litbang', 'kominfo', 'rsdm', 'bph']);
         });
 
         // Tabel kegiatan

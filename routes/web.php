@@ -34,4 +34,30 @@ Route::group(['prefix' => 'divisi'], function () {
         return Inertia::render('Divisi/Kominfo/Home');
     });
 });
+
+
+// Route ini cuma buat pengembangan ui dashboard kalo udah ada controller nya ntar bisa di ubah
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard/MainDashboard');
+});
+Route::get('/dashboard/profile', function () {
+    return Inertia::render('Dashboard/Profile');
+});
+Route::get('/dashboard/list-anggota', function () {
+    return Inertia::render('Dashboard/Admin/ListAnggota/UserList');
+});
+Route::get('/dashboard/tambah-anggota', function () {
+    return Inertia::render('Dashboard/Admin/ListAnggota/AddMembers');
+});
+Route::get('/dashboard/acara/mendatang', function () {
+    return Inertia::render('Dashboard/User/Mendatang/Acara');
+});
+Route::get('/dashboard/pertemuan/mendatang', function () {
+    return Inertia::render('Dashboard/User/Mendatang/Pertemuan');
+});
+Route::get('/dashboard/acara/detail', function () {
+    return Inertia::render('Dashboard/Details/DetailAcara');
+});
+
+
 require __DIR__.'/auth.php';
