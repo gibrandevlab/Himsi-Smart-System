@@ -71,7 +71,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                     <form
                         action=""
-                        className="flex flex-col justify-start items-start w-full"
+                        className="flex flex-col justify-center items- w-full h-full"
                         onSubmit={e => submit(e)}
                     >
                         <label
