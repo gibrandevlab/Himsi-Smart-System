@@ -16,7 +16,8 @@ Route::prefix('blog')->group(function () {
 // Dashboard Routes (akses untuk beberapa role)
 Route::middleware(['role:superadmin|wakil_kordinator|ketua_kordinator|ketua_cabang|wakil_cabang|bendahara|sekretaris'])
     ->group(function () {
-        // Contoh: Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Contoh: Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile-edit', fn() => Inertia::render('AdminTesting/KelolaDivisi/Index'))->name('profile.edit');
     });
 
 // Admin Routes (khusus superadmin)
@@ -24,6 +25,7 @@ Route::middleware(['auth', 'role:superadmin'])
     ->group(function () {
         Route::resource('anggota', AnggotaController::class);
         Route::resource('users', UserController::class);
+        Route::get('/kelola-divisi', fn() => Inertia::render('AdminTesting/KelolaDivisi/Index'))->name('kelola.divisi');
     });
 
 // Divisi Routes

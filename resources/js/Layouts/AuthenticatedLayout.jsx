@@ -30,6 +30,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+                                <NavLink
+                                    href={route('kelola.divisi')}
+                                    active={route().current('kelola.divisi')}
+                                >
+                                    Kelola Divisi
+                                </NavLink>
                             </div>
                         </div>
 
