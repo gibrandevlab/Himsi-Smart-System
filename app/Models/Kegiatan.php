@@ -12,6 +12,7 @@ class Kegiatan extends Model
     protected $table = 'kegiatan';
 
     protected $fillable = [
+        'id',
         'jenis_kegiatan',
         'nama_kegiatan',
         'deskripsi',
@@ -19,6 +20,7 @@ class Kegiatan extends Model
         'selesai',
         'id_pic',
         'status',
+        'kordinat_lokasi',
     ];
 
     protected $dates = [

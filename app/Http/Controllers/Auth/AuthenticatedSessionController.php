@@ -26,9 +26,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * Menangani permintaan autentikasi masuk.
      */
-    public function store(Request $request)
-    {
-        dd($request->all());
+    public function store(Request $request) {
         $request->validate([
             'login'    => 'required',
             'password' => 'required',
@@ -56,15 +54,27 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check($password, $user->password)) {
             RateLimiter::clear($throttleKey);
 
-            Auth::login($user);
+            if (!$user->role) {
+                return back()->withErrors(['login' => 'Akun tidak memiliki role yang valid.']);
+            }
+
+            $remember = $request->has('remember');
+
+            Auth::login($user, $remember);
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+            if ($user->role === 'member') {
+                return redirect()->route('absen/view');
+            } elseif (!in_array($user->role, ['member', 'guest'])) {
+                return redirect()->route('dashboard');
+            }
+
+            return back()->withErrors(['login' => 'Role tidak valid untuk login.']);
         }
+
         RateLimiter::hit($throttleKey, 60);
 
         return back()->withErrors(['login' => 'Login gagal, periksa kembali NIM/Email dan Password.']);
-
     }
 
     public function destroy(Request $request)
