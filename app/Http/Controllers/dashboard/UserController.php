@@ -6,21 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
     // Menampilkan daftar user
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(15);
         return view('users.index', compact('users'));
     }
 
-    // Menampilkan form untuk membuat user baru
-    public function create()
-    {
-        return view('users.create');
-    }
 
     // Menyimpan user baru
     public function store(Request $request)
@@ -28,19 +25,13 @@ class UserController extends Controller
         $validated = $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => ['required', 'string', Password::min(8)->mixedCase()->letters()->numbers()->symbols()->uncompromised()],
             'role'     => 'required|string',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
         User::create($validated);
         return redirect()->route('users.index')->with('success', 'User berhasil dibuat.');
-    }
-
-    // Menampilkan detail user
-    public function show(User $user)
-    {
-        return view('users.show', compact('user'));
     }
 
     // Menampilkan form edit user
