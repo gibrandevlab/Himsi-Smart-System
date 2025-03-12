@@ -8,9 +8,12 @@ export default defineConfig({
             input: [
                 'resources/js/app.jsx',  
                 'resources/css/app.css', 
-              ],
+            ],
             refresh: true,
         }),
         react(),
     ],
+    define: {
+        global: 'window', // Tambahkan ini untuk mengatasi error global
+    },
 });

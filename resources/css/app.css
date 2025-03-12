@@ -86,3 +86,34 @@ body {
     scroll-behavior: smooth;
     font-family: "Inter-regular";
 }
+
+.DraftEditor-root h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.DraftEditor-root h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.DraftEditor-root h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.DraftEditor-root h4 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.DraftEditor-root h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.DraftEditor-root h6 {
+  font-size: 16px;
+  font-weight: bold;
+}
+

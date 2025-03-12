@@ -103,12 +103,21 @@ return new class extends Migration
         // Tabel divisi
         Schema::create('divisi', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
             $table->string('nama')->unique();
             $table->text('deskripsi')->nullable();
             $table->string('logo')->nullable();
             $table->unsignedInteger('jumlah_anggota')->default(0);
             $table->timestamps();
         });
+
+        // Tabel divisi_images
+        Schema::create('divisi_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
+            $table->string('filename');
+            $table->timestamps();
+        });  
 
         // Tabel anggota
         Schema::create('anggota', function (Blueprint $table) {
@@ -119,7 +128,7 @@ return new class extends Migration
             $table->tinyInteger('status_aktif');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('periode');
-            $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
+            $table->enum('divisi', ['pendidikan', 'litbang', 'kominfo', 'rsdm']);
         });
 
         // Tabel kegiatan

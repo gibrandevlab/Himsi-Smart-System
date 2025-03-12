@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { useState, useEffect  } from 'react';
 
-const Navbar = () => {
+const Navbar = ({divisions}) => {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
     const [isDivisionOpen, setIsDivisionOpen] = useState(false);
     const [isServiceOpen, setIsServiceOpen] = useState(false);
@@ -74,11 +74,11 @@ const Navbar = () => {
                                 </button>
                                 {isDivisionOpen && (
                                     <ul className="division absolute left-0 top-full z-10 mt-1 shadow-lg rounded-md bg-secondary shadow px-2 py-2 text-black">
-                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">BPH</li>
-                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">RSDM</li>
-                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">KOMINFO</li>
-                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">LITBANG</li>
-                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">PENDIDIKAN</li>
+                                        {divisions.map((item, i) => (
+                                            <Link  href={"/divisi/" + item.nama} key={i}>
+                                                <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">{item.nama}</li>
+                                            </Link>
+                                        ))}
                                     </ul>
                                 )}
                             </li>
@@ -145,11 +145,11 @@ const Navbar = () => {
                         </button>
                         {isDivisionOpen && (
                             <ul className="division mt-2 shadow-lg rounded bg-secondary text-xl ml-8 p-2 text-black">
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">BPH</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">RSDM</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">KOMINFO</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">LITBANG</li>
-                                <li className="p-3 py-2 hover:bg-primary hover:text-secondary hover:rounded-md w-full cursor-pointer">PENDIDIKAN</li>
+                               {divisions.map((item, i) => (
+                                    <Link  href={"/divisi/" + item.nama} key={i}>
+                                        <li className="px-4 py-2 hover:bg-primary hover:text-white hover:rounded-md cursor-pointer">{item.nama}</li>
+                                    </Link>
+                                ))}
                             </ul>
                         )}
                     </li>
