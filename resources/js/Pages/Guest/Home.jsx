@@ -2,11 +2,11 @@ import { Head, Link } from '@inertiajs/react';
 import Navbar from "@/Layouts/Navbar";
 import Footer from "@/Layouts/Footer";
 
-export default function Home() { 
+export default function Home({title, divisions}) { 
     return (
        <>
         <Head titleTemplate="%s">
-            <title>Himsi Kaliabang</title>
+            <title>{title}</title>
             <link rel="icon" href={`/storage/Favicon/himsikla.jpg`} type="image/x-icon" />
             <meta name="description" content="onprogress" />
             <meta name="keywords" content="onprogress" />
@@ -14,7 +14,7 @@ export default function Home() {
         </Head> 
 
         {/* NAVBAR  */}
-        <Navbar/>
+        <Navbar divisions={divisions}/>
         {/* END NAVBAR  */}
 
         {/* HERO SECTION */}

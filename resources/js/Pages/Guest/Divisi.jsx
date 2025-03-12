@@ -4,20 +4,22 @@ import Navbar from "@/Layouts/Navbar";
 import Footer from "@/Layouts/Footer";
 import Modal from "@/Components/Modal";
 
-export default function Divisi() { 
+export default function Divisi({title, divisions, divisionDetail}) { 
     const [isOpen, setIsOpen] = useState(false);
 
     return (
        <>
             <Head titleTemplate="%s">
-                <title>Divisi - Pendidikan / Himsi Kaliabang</title>
+                <title>{title}</title>
                 <link rel="icon" href={`/storage/Favicon/himsikla.jpg`} type="image/x-icon" />
                 <meta name="description" content="onprogress" />
                 <meta name="keywords" content="onprogress" />
                 <meta name="author" content="onprogress" />
             </Head> 
 
-            <Navbar/>
+            {/* NAVBAR  */}
+            <Navbar divisions={divisions}/>
+            {/* END NAVBAR  */}
 
 
             {/* HERO SECTION */}
@@ -39,23 +41,27 @@ export default function Divisi() {
 
                 <div className="content">
                     {/* Card Divisi */}
-                    <div className="relative top-[100%] md:top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full md:w-[30rem] lg:w-[30rem] px-2">
-                        <div className="card-division rounded-md p-4 flex flex-col items-center bg-primary border border-4 border-[#EDB848] border-rounded-md text-white shadow-md">
-                            {/* Logo Divisi */}
+                    <div className="relative top-[100%] md:top-[100%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full md:w-[30rem] lg:w-[30rem]">
+                        <div className="card-division  max-h-64 md:max-h-96 lg:max-h-[30rem] rounded-md p-4 flex flex-col items-center bg-primary border border-4 border-[#EDB848] text-white shadow-md">
+                        {/* Logo Divisi */}
                             <div className="logo-divisi">
                                 <img 
-                                    src="https://himsicengkareng.jasanya.tech/storage/himsi-images/01JBEPDRFDDNTM5G2KP91GX8NV.png" 
-                                    alt="Logo Divisi" 
+                                    src={`/storage/DivisiAssets/Logo/${divisionDetail.logo}`} 
+                                    alt={divisionDetail.nama}
                                     className="w-24 h-auto -mt-14"
                                 />
                             </div>
 
-                            {/* Tentang Divisi Pendidikan */}
-                            <h1 className="text-center text-2xl font-bold">Divisi Pendidikan</h1>
-                            <p className="text-sm text-white text-center tracking-wide max-w-lg mt-2">
-                                Fokus pada peningkatan kualitas akademis dan pengembangan intelektual anggota himpunan. 
-                                Kegiatannya meliputi seminar, diskusi ilmiah, bimbingan belajar, dan program pengembangan keterampilan.
-                            </p>
+                            <div className="divisi overflow-y-auto  max-h-64 md:max-h-96">
+                                <div className="divisi-name mb-2">
+                                    <h1 className="text-center text-2xl font-bold">Divisi {divisionDetail.nama}</h1>
+                                </div>
+                                <div className="divisi-content">
+                                    <div
+                                        dangerouslySetInnerHTML={{ __html: divisionDetail.deskripsi }}
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +75,7 @@ export default function Divisi() {
                         <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
                         <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Ketua - Wakil Pendidikan</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Ketua - Wakil {divisionDetail.nama}</h1>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 p-2 w-full md:w-fit lg:w-fit mx-auto place-items-center items-center py-5 text-center">
@@ -124,7 +130,7 @@ export default function Divisi() {
                         <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
                         <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Anggota Pendiikan</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Anggota {divisionDetail.nama}</h1>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2 w-full md:w-fit lg:w-fit mx-auto place-items-center items-center py-5 text-center">
@@ -199,7 +205,7 @@ export default function Divisi() {
                         <span className="absolute top-1/2 left-[-30px] right-[-30px] border-t-[3px] border-primary"></span>
                         <span className="relative bg-secondary px-2 text-primary font-inter-semibold">HIMSI KALIABANG</span>
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Program Kerja Pendidikan</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mt-3 font-handlee">Program Kerja {divisionDetail.nama}</h1>
                 </div>
                 <div className="overflow-x-auto shadow-lg rounded-md">
                     <table className="min-w-full bg-white border border-gray-200">
