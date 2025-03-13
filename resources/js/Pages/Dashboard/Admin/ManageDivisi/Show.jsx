@@ -36,7 +36,7 @@ const ManageDivisiShow = ({data_divisi}) => {
                     Nama Divisi
                 </div>
                 <div className="w-full md:w-[70%]">
-                    <input 
+                    <input
                         disabled
                         type="text bg-gray-500"
                         value={data.nama}

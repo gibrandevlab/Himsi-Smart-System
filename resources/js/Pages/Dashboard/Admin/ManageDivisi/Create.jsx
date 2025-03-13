@@ -36,7 +36,7 @@ const ManageDivisiCreate = () => {
     };
 
     const handleTextEditorChange = (content) => {
-        setData("deskripsi", content); 
+        setData("deskripsi", content);
     };
 
     const handleImagesChange = (newImage) => {
@@ -45,15 +45,15 @@ const ManageDivisiCreate = () => {
           images: [...prevData.images, newImage]
         }));
       };
-      
+
 
     const { errors } = usePage().props
     function submit(e) {
         e.preventDefault();
         router.post("/dashboard/manage-divisi/", data);
     }
-    
-    
+
+
 
     return <Layout>
         <form
@@ -72,7 +72,7 @@ const ManageDivisiCreate = () => {
                     Nama Divisi
                 </div>
                 <div className="w-full md:w-[70%]">
-                    <input 
+                    <input
                         onChange={e => setData('nama', e.target.value)}
                         type="text"
                         className="rounded-md h-8 border-gray-200 w-full md:w-[55%] text-sm font-inter-regular text-slate-600 bg-gray-50 md:border-gray-400"
@@ -132,7 +132,7 @@ const ManageDivisiCreate = () => {
                     Jumlah Anggota Divisi
                 </div>
                 <div className="w-full md:w-[70%]">
-                    <input 
+                    <input
                         onChange={e => setData('jumlah_anggota', e.target.value)}
                         type="text"
                         className="rounded-md h-8 border-gray-200 w-full md:w-[55%] text-sm font-inter-regular text-slate-600 bg-gray-50 md:border-gray-400"

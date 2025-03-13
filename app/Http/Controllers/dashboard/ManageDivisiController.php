@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Divisi;
 use App\Models\DivisiImages;
-
 
 class ManageDivisiController extends Controller
 {
@@ -45,36 +43,38 @@ class ManageDivisiController extends Controller
             'deskripsi' => 'required',
             'logo' => 'required|file|mimes:jpg,png,jpeg,webp',
         ]);
-    
+
         // Inisialisasi model Divisi
         $DivisiModel = new Divisi();
-    
+
         if ($request->hasFile('logo')) {
             $logo = $request->file('logo');
             $logo_name = 'logo-divisi-' . Str::uuid() . '.' . $logo->getClientOriginalExtension();
             $logo->storeAs('DivisiAssets/Logo', $logo_name, 'public');
             $DivisiModel->logo = $logo_name;
         }
-        
-        //proses simpan data divisi 
+
+        // Proses simpan data divisi
         $DivisiModel->slug = Str::slug($request->nama);
         $DivisiModel->nama = $request->nama;
         $DivisiModel->deskripsi = $request->deskripsi;
         $DivisiModel->jumlah_anggota = $request->jumlah_anggota;
-        
+
         $DivisiModel->save();
 
-        // proses simpan data divisi images
-        foreach ($request->images as $image) {
-            $DivisiImagesModel = new DivisiImages();
-            $DivisiImagesModel->divisi_id = $DivisiModel->id;
-            $DivisiImagesModel->filename = $image;
-            $DivisiImagesModel->save();
+        // Proses simpan data divisi images jika ada
+        if ($request->has('images') && is_array($request->input('images'))) {
+            foreach ($request->input('images') as $image) {
+                $DivisiImagesModel = new DivisiImages();
+                $DivisiImagesModel->divisi_id = $DivisiModel->id;
+                $DivisiImagesModel->filename = $image;
+                $DivisiImagesModel->save();
+            }
         }
-        
+
         return redirect()->route('manage-divisi.index')->with('success', 'Data created successfully.');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -94,7 +94,7 @@ class ManageDivisiController extends Controller
     public function edit(string $id)
     {
         $data_divisi = Divisi::where('slug', $id)->firstOrFail();
-        $data_divisi_images = DivisiImages::where('divisi_id',  $data_divisi->id)->get()->toArray();
+        $data_divisi_images = DivisiImages::where('divisi_id', $data_divisi->id)->get()->toArray();
         $data = [
             'data_divisi' => $data_divisi,
             'data_divisi_images' => $data_divisi_images,
@@ -129,8 +129,8 @@ class ManageDivisiController extends Controller
             // Hapus file lama jika ada
             if ($DivisiModel->logo) {
                 $oldFilePath = 'DivisiAssets/Logo/' . $DivisiModel->logo;
-                if (Storage::exists($oldFilePath)) {
-                    Storage::delete($oldFilePath);
+                if (Storage::disk('public')->exists($oldFilePath)) {
+                    Storage::disk('public')->delete($oldFilePath);
                 }
             }
             $DivisiModel->logo = $image_name;
@@ -143,9 +143,8 @@ class ManageDivisiController extends Controller
 
         $DivisiModel->save();
 
-        // Update data images
+        // Update data images: hapus gambar lama dan simpan gambar baru jika ada
         DivisiImages::where('divisi_id', $DivisiModel->id)->delete();
-        // Jika request images ada maka simpan ke tabel divisi images
         if ($request->has('data_form.images') && is_array($request->input('data_form.images'))) {
             foreach ($request->input('data_form.images') as $imageName) {
                 $DivisiImagesModel = new DivisiImages();
@@ -158,7 +157,6 @@ class ManageDivisiController extends Controller
         return redirect()->route('manage-divisi.index')->with('success', 'Data updated successfully.');
     }
 
-    
     /**
      * Remove the specified resource from storage.
      */
@@ -168,29 +166,30 @@ class ManageDivisiController extends Controller
         if (!$divisi) {
             return redirect()->back()->with('error', 'Data not found.');
         }
-        
+
         $divisi_id = $divisi->id;
         $divisiImages = DivisiImages::where('divisi_id', $divisi_id)->get();
-        
-        // Looping untuk hapus file gambar 
+
+        // Looping untuk menghapus file gambar konten
         foreach ($divisiImages as $image) {
             $filePath = 'DivisiAssets/ContentImage/' . $image->filename;
             if (Storage::disk('public')->exists($filePath)) {
                 Storage::disk('public')->delete($filePath);
             }
         }
-        
+
         DivisiImages::where('divisi_id', $divisi_id)->delete();
-        
+
+        // Hapus file logo jika ada
         if ($divisi->logo) {
             $oldLogoPath = 'DivisiAssets/Logo/' . $divisi->logo;
             if (Storage::disk('public')->exists($oldLogoPath)) {
                 Storage::disk('public')->delete($oldLogoPath);
             }
         }
-        
+
         $divisi->delete();
-        
+
         return redirect()->back()->with('success', 'Data deleted successfully.');
     }
 
@@ -199,49 +198,49 @@ class ManageDivisiController extends Controller
         $request->validate([
             'image' => 'required|file|mimes:jpg,png,jpeg,webp'
         ]);
-    
+
         $originalName = $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('DivisiAssets/ContentImage', $originalName, 'public');
         $imageUrl = asset('storage/' . $path);
-    
+
         return response()->json([
             'success' => true,
             'image_url' => $imageUrl
         ]);
     }
 
-    public function deleteImageContentDivisi(Request $request) {
+    public function deleteImageContentDivisi(Request $request)
+    {
         $request->validate([
             'imageUrl' => 'required|string',
         ]);
-    
+
         $imageUrl = $request->input('imageUrl');
         $fileName = basename($imageUrl);
-    
+
         $image = DivisiImages::where('filename', $fileName)->first();
         $filePath = 'DivisiAssets/ContentImage/' . $fileName;
-    
+
         if (!$image && !Storage::disk('public')->exists($filePath)) {
             return response()->json([
                 'success' => true,
-                'hasImage' => false, 
+                'hasImage' => false,
                 'message' => 'Gambar tidak ditemukan, tetapi proses tetap sukses'
             ], 200);
         }
-    
+
         if ($image) {
             $image->delete();
         }
-    
+
         if (Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
         }
-    
+
         return response()->json([
             'success' => true,
-            'hasImage' => true, 
+            'hasImage' => true,
             'message' => 'File deleted successfully'
         ], 200);
     }
-    
 }
