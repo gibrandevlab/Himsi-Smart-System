@@ -1,35 +1,57 @@
 import Layout from "@/Layouts/Dashboard/Layout";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaRegImage } from "react-icons/fa";
 import { useForm, router, usePage } from '@inertiajs/react'
 import { useState, useRef, useEffect } from "react";
 import TextEditorDivisi from "@/Components/TextEditorDivisi";
 
 const ManageDivisiCreate = () => {
-    const [imagePreview, setImagePreview] = useState(null);
-    const fileInput = useRef(null);
+    const [imagePreviewLogo, setImagePreviewLogo] = useState(null);
+    const [imagePreviewBanner, setImagePreviewBanner] = useState(null);
+
+    const fileInputLogo = useRef(null);
+    const fileInputBanner = useRef(null);
+    
      // SETUP FORM
     const { data, setData } = useForm({
         nama: '',
         deskripsi: '',
         logo: '',
+        banner: '',
         jumlah_anggota: '',
         images: [],
     });
 
     console.log(data);
 
-    const handleClickFileInput = () => {
-        fileInput.current.click();
+    const handleClickFileLogo = () => {
+        fileInputLogo.current.click();
     };
 
-    const handleFileInput = (e) => {
+    const handleFileLogo = (e) => {
         const file = e.target.files[0];
         setData("logo", file);
 
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImagePreview(reader.result);
+                setImagePreviewLogo(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleClickFileBanner = () => {
+        fileInputBanner.current.click();
+    };
+
+    const handleFileBanner = (e) => {
+        const file = e.target.files[0];
+        setData("banner", file);
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreviewBanner(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -90,10 +112,10 @@ const ManageDivisiCreate = () => {
                 </div>
                 <div className="col-span-full">
                     <div className="mt-2 flex items-center gap-x-3">
-                        {imagePreview ? (
+                        {imagePreviewLogo ? (
                             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary border-opacity-60">
                                 <img
-                                    src={imagePreview}
+                                    src={imagePreviewLogo}
                                     alt="Logo Divisi"
                                     className="w-full h-full object-cover object-center"
                                 />
@@ -105,15 +127,15 @@ const ManageDivisiCreate = () => {
                             />
                         )}
                         <button
-                            onClick={(e) => handleClickFileInput()}
+                            onClick={(e) => handleClickFileLogo()}
                             type="button"
                             className="rounded-md bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 ring-1 shadow-xs ring-gray-400 ring-inset hover:bg-gray-50 font-inter-medium text-opacity-80"
                         >
                             Upload
                         </button>
                         <input
-                            ref={fileInput}
-                            onChange={(e) => handleFileInput(e)}
+                            ref={fileInputLogo}
+                            onChange={(e) => handleFileLogo(e)}
                             type="file"
                             className="hidden"
                             capture="environment"
@@ -122,6 +144,46 @@ const ManageDivisiCreate = () => {
                         {errors.logo &&
                             <div className="alert text-red-500 text-xs">
                             {errors.logo}
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-col md:flex-row w-full md:border-b border-gray-300 py-5 md:py-7 md:items-center gap-y-2">
+                <div className="w-[30%] font-inter-medium opacity-90 text-sm ">
+                    Banner Divisi
+                </div>
+                <div className="col-span-full">
+                    <div className="mt-2 flex items-center gap-x-3">
+                        {imagePreviewBanner ? (
+                            <div className="w-full h-[200px] rounded-md overflow-hidden border-2 border-primary border-opacity-60">
+                                <img
+                                    src={imagePreviewBanner}
+                                    alt="Banner Divisi"
+                                    className="w-full h-full object-cover object-center"
+                                />
+                            </div>
+                        ) : (
+                            <FaRegImage className="size-12 text-gray-300 rounded-md" />
+                        )}
+                        <button
+                            onClick={(e) => handleClickFileBanner()}
+                            type="button"
+                            className="rounded-md bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 ring-1 shadow-xs ring-gray-400 ring-inset hover:bg-gray-50 font-inter-medium text-opacity-80"
+                        >
+                            Upload
+                        </button>
+                        <input
+                            ref={fileInputBanner}
+                            onChange={(e) => handleFileBanner(e)}
+                            type="file"
+                            className="hidden"
+                            capture="environment"
+                            name="banner"
+                        />
+                        {errors.banner &&
+                            <div className="alert text-red-500 text-xs">
+                            {errors.banner}
                             </div>
                         }
                     </div>

@@ -12,7 +12,7 @@ class Divisi extends Model
     protected $table = 'divisi';
 
     protected $fillable = [
-        'slug', 'nama', 'deskripsi', 'logo', 'jumlah_anggota'
+        'slug', 'nama', 'deskripsi', 'banner', 'logo', 'jumlah_anggota'
     ];
 
     public function anggota()

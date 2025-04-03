@@ -29,8 +29,8 @@ export default function Divisi({title, divisions, divisionDetail}) {
                         {/* Thumbnail Divisi */}
                         <div className="w-full h-80 md:h-[500px] overflow-hidden bg-cover bg-center bg-fixed relative">
                             <img 
-                                src={`/storage/DivisiImage/Pendidikan/thumbnail.jpg`} 
-                                alt="Pendidikan Thumbnail" 
+                                src={`/storage/DivisiAssets/Banner/${divisionDetail.banner}`} 
+                                alt={divisionDetail.nama} 
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-black opacity-50"></div>

@@ -106,6 +106,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('nama')->unique();
             $table->text('deskripsi')->nullable();
+            $table->string('banner')->nullable();
             $table->string('logo')->nullable();
             $table->unsignedInteger('jumlah_anggota')->default(0);
             $table->timestamps();

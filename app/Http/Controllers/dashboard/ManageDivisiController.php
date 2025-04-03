@@ -42,6 +42,7 @@ class ManageDivisiController extends Controller
             'jumlah_anggota' => 'required',
             'deskripsi' => 'required',
             'logo' => 'required|file|mimes:jpg,png,jpeg,webp',
+            'banner' => 'required|file|mimes:jpg,png,jpeg,webp',
         ]);
 
         // Inisialisasi model Divisi
@@ -52,6 +53,12 @@ class ManageDivisiController extends Controller
             $logo_name = 'logo-divisi-' . Str::uuid() . '.' . $logo->getClientOriginalExtension();
             $logo->storeAs('DivisiAssets/Logo', $logo_name, 'public');
             $DivisiModel->logo = $logo_name;
+        }
+        if ($request->hasFile('banner')) {
+            $banner = $request->file('banner');
+            $banner_name = 'banner-divisi-' . Str::uuid() . '.' . $banner->getClientOriginalExtension();
+            $banner->storeAs('DivisiAssets/Banner', $banner_name, 'public');
+            $DivisiModel->banner = $banner_name;
         }
 
         // Proses simpan data divisi
@@ -112,21 +119,18 @@ class ManageDivisiController extends Controller
             'data_form.jumlah_anggota' => 'required',
             'data_form.deskripsi' => 'required',
             'data_form.logo' => $request->hasFile('data_form.logo') ? 'file|mimes:jpg,png,jpeg,webp' : 'sometimes|string',
+            'data_form.banner' => $request->hasFile('data_form.banner') ? 'file|mimes:jpg,png,jpeg,webp' : 'sometimes|string',
         ]);
 
         $DivisiModel = Divisi::where('slug', $id)->first();
 
-        // Jika ada file baru untuk logo, lakukan upload dan hapus file lama
         if ($request->hasFile('data_form.logo')) {
             $image = $request->file('data_form.logo');
 
-            // Buat nama file baru
             $image_name = 'logo-divisi-' . Str::uuid() . '.' . $image->getClientOriginalExtension();
 
-            // Simpan file baru
             $image->storeAs('DivisiAssets/Logo', $image_name, 'public');
 
-            // Hapus file lama jika ada
             if ($DivisiModel->logo) {
                 $oldFilePath = 'DivisiAssets/Logo/' . $DivisiModel->logo;
                 if (Storage::disk('public')->exists($oldFilePath)) {
@@ -134,6 +138,22 @@ class ManageDivisiController extends Controller
                 }
             }
             $DivisiModel->logo = $image_name;
+        }
+
+        if ($request->hasFile('data_form.banner')) {
+            $image = $request->file('data_form.banner');
+
+            $image_name = 'banner-divisi-' . Str::uuid() . '.' . $image->getClientOriginalExtension();
+
+            $image->storeAs('DivisiAssets/banner', $image_name, 'public');
+
+            if ($DivisiModel->banner) {
+                $oldFilePath = 'DivisiAssets/Banner/' . $DivisiModel->banner;
+                if (Storage::disk('public')->exists($oldFilePath)) {
+                    Storage::disk('public')->delete($oldFilePath);
+                }
+            }
+            $DivisiModel->banner = $image_name;
         }
 
         $DivisiModel->slug = Str::slug($request->input("data_form.nama"));
@@ -185,6 +205,13 @@ class ManageDivisiController extends Controller
             $oldLogoPath = 'DivisiAssets/Logo/' . $divisi->logo;
             if (Storage::disk('public')->exists($oldLogoPath)) {
                 Storage::disk('public')->delete($oldLogoPath);
+            }
+        }
+
+        if ($divisi->banner) {
+            $oldBannerPath = 'DivisiAssets/Banner/' . $divisi->banner;
+            if (Storage::disk('public')->exists($oldBannerPath)) {
+                Storage::disk('public')->delete($oldBannerPath);
             }
         }
 

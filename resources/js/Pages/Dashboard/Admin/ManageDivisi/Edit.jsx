@@ -1,24 +1,25 @@
 import Layout from "@/Layouts/Dashboard/Layout";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaRegImage } from "react-icons/fa";
 import { useForm, router, usePage } from '@inertiajs/react'
 import { useState, useRef } from "react";
 import TextEditorDivisi from "@/Components/TextEditorDivisi";
 
 const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
-    const [imagePreview, setImagePreview] = useState(data_divisi.logo);
-    const fileInput = useRef(null);
+    const [imagePreviewLogo, setImagePreviewLogo] = useState(data_divisi.logo);
+    const [imagePreviewBanner, setImagePreviewBanner] = useState(data_divisi.banner);
+
+    const fileInputLogo = useRef(null);
+    const fileInputBanner = useRef(null);
     
-    // SETUP FORM dengan menambahkan images (jika data_divisi.images ada, jika tidak kosong)
     const { data, setData } = useForm({
         nama: data_divisi.nama,
         deskripsi: data_divisi.deskripsi,
         logo: data_divisi.logo,
+        banner: data_divisi.banner,
         jumlah_anggota: data_divisi.jumlah_anggota,
         images: data_divisi_images ? data_divisi_images.map((img) => img.filename) : []
     });
     
-    console.log(data)
-    // Fungsi untuk menangani penambahan image baru (nama file)
     const handleImagesChange = (newImage) => {
         setData((prevData) => ({
             ...prevData,
@@ -26,11 +27,11 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
         }));
     };
 
-    const handleClickFileInput = () => {
-        fileInput.current.click();
+    const handleClickFileLogo = () => {
+        fileInputLogo.current.click();
     };
 
-    const handleFileInput = (e) => {
+    const handleFileLogo = (e) => {
         const file = e.target.files[0];
 
         if (file) {
@@ -39,7 +40,25 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
             // Preview gambar baru
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImagePreview(reader.result);
+                setImagePreviewLogo(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    const handleClickFileBanner = () => {
+        fileInputBanner.current.click();
+    };
+
+    const handleFileBanner = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            setData("banner", file); // Simpan file baru di form
+
+            // Preview gambar baru
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreviewBanner(reader.result);
             };
             reader.readAsDataURL(file);
         }
@@ -96,10 +115,10 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
                     </div>
                     <div className="col-span-full">
                         <div className="mt-2 flex items-center gap-x-3">
-                            {imagePreview ? (
+                            {imagePreviewLogo ? (
                                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary border-opacity-60">
                                     <img
-                                        src={imagePreview.startsWith("data:") ? imagePreview : `/storage/DivisiAssets/Logo/${imagePreview}`}
+                                        src={imagePreviewLogo.startsWith("data:") ? imagePreviewLogo : `/storage/DivisiAssets/Logo/${imagePreviewLogo}`}
                                         alt="Logo Divisi"
                                         className="w-full h-full object-cover object-center"
                                     />
@@ -112,7 +131,7 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
                             )}
 
                             <button
-                                onClick={handleClickFileInput}
+                                onClick={handleClickFileLogo}
                                 type="button"
                                 className="rounded-md bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 ring-1 shadow-xs ring-gray-400 ring-inset hover:bg-gray-50 font-inter-medium text-opacity-80"
                             >
@@ -120,8 +139,8 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
                             </button>
 
                             <input
-                                ref={fileInput}
-                                onChange={handleFileInput}
+                                ref={fileInputLogo}
+                                onChange={handleFileLogo}
                                 type="file"
                                 className="hidden"
                                 name="logo"
@@ -132,6 +151,46 @@ const ManageDivisiEdit = ({ data_divisi, data_divisi_images }) => {
                                     {errors["data_form.logo"]}
                                 </div>
                             )}
+                        </div>
+                    </div>
+                </div>
+                <div className="flex flex-col md:flex-row w-full md:border-b border-gray-300 py-5 md:py-7 md:items-center gap-y-2">
+                    <div className="w-[30%] font-inter-medium opacity-90 text-sm ">
+                        Banner Divisi
+                    </div>
+                    <div className="col-span-full">
+                        <div className="mt-2 flex items-center gap-x-3">
+                            {imagePreviewBanner ? (
+                                <div className="w-full h-[200px] rounded-md overflow-hidden border-2 border-primary border-opacity-60">
+                                    <img
+                                        src={imagePreviewBanner.startsWith("data:") ? imagePreviewBanner : `/storage/DivisiAssets/Banner/${imagePreviewBanner}`}
+                                        alt="Banner Divisi"
+                                        className="w-full h-full object-cover object-center"
+                                    />
+                                </div>
+                            ) : (
+                                <FaRegImage className="size-12 text-gray-300 rounded-md" />
+                            )}
+                            <button
+                                onClick={(e) => handleClickFileBanner()}
+                                type="button"
+                                className="rounded-md bg-white px-2.5 py-1.5 text-xs font-semibold text-gray-900 ring-1 shadow-xs ring-gray-400 ring-inset hover:bg-gray-50 font-inter-medium text-opacity-80"
+                            >
+                                Upload
+                            </button>
+                            <input
+                                ref={fileInputBanner}
+                                onChange={(e) => handleFileBanner(e)}
+                                type="file"
+                                className="hidden"
+                                capture="environment"
+                                name="banner"
+                            />
+                            {errors.banner &&
+                                <div className="alert text-red-500 text-xs">
+                                {errors.banner}
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
