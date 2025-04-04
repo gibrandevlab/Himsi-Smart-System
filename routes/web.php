@@ -8,6 +8,8 @@ use App\Http\Controllers\User\AbsensiController;
 use App\Http\Controllers\Dashboard\AnggotaController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\ManageDivisiController;
+use App\Http\Controllers\Dashboard\ManageBlogCategoryController;
+use App\Http\Controllers\Dashboard\ManageBlogController;
 use App\Http\Controllers\UploadImageTextEditor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -76,8 +78,17 @@ Route::get('/dashboard/acara/detail', function () {
 Route::resource('dashboard/manage-divisi', ManageDivisiController::class);
 Route::post('upload-image-content-divisi', [ManageDivisiController::class, 'uploadImageContentDivisi'])->name('upload-image-content-divisi');
 Route::delete('delete-image-content-divisi', [ManageDivisiController::class, 'deleteImageContentDivisi'])->name('delete-image-content-divisi');
-Route::delete('delete-image-content-divisi-reload', [ManageDivisiController::class, 'deleteUnusedImages'])->name('delete-image-content-divisi-reload');
 // End Dashboard Manage Divisi 
+
+// Dashboard Manage Blog Category    
+Route::resource('dashboard/manage-blog-category', ManageBlogCategoryController::class);
+// End Dashboard Manage Blog Category    
+
+// Dashboard Manage Blog     
+Route::resource('dashboard/manage-blog', ManageBlogController::class);
+Route::post('upload-image-content-blog', [ManageBlogController::class, 'uploadImageContentBlog'])->name('upload-image-content-divisi');
+Route::delete('delete-image-content-blog', [ManageBlogController::class, 'deleteImageContentBlog'])->name('delete-image-content-divisi');
+// End Dashboard Manage Blog     
 
 // Auth Routes
 require __DIR__ . '/auth.php';

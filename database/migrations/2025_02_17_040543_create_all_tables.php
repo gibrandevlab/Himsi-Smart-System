@@ -112,7 +112,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Tabel divisi_images
+        // Tabel divisi content images
         Schema::create('divisi_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('divisi_id')->constrained('divisi')->onDelete('cascade');
@@ -213,6 +213,39 @@ return new class extends Migration
             $table->id();
             $table->string('file_foto');
         });
+
+        // Tabel kategori blog
+        Schema::create('blog_kategori', function (Blueprint $table) {
+            $table->id();
+            $table->string('slug')->unique();
+            $table->string('nama')->unique();
+            $table->string('icon')->nullable();
+            $table->timestamps();
+        });
+
+        // Tabel blog
+        Schema::create('blog', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('kategori_blog_id')->constrained('blog_kategori')->onDelete('cascade');
+            $table->string('slug');
+            $table->string('judul');
+            $table->text('konten')->nullable();
+            $table->string('banner')->nullable();
+            $table->enum('status', [
+                'aktif',
+                'tidak_aktif',
+            ]);
+            $table->timestamps();
+        });
+
+        // Tabel blog content images
+        Schema::create('blog_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('blog_id')->constrained('blog')->onDelete('cascade');
+            $table->string('filename');
+            $table->timestamps();
+        });  
+         
     }
 
     /**
